@@ -25,7 +25,7 @@ import bolts.Task;
 
 class TempFileUtils {
 
-  private static final String TEMP_FILE_SUFFIX = ".rnifk.png";
+  private static final String TEMP_FILE_SUFFIX = ".rnifk.jpg";
 
   static class CleanTask extends GuardedAsyncTask<Void, Void> implements FilenameFilter {
     private final File cacheDir;
@@ -91,7 +91,8 @@ class TempFileUtils {
         final FileOutputStream fos = new FileOutputStream(outputFile);
         final Bitmap bitmap = ((CloseableBitmap) cloned.get()).getUnderlyingBitmap();
 
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        //bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
 
         final String path = Uri.fromFile(outputFile).toString();
 
