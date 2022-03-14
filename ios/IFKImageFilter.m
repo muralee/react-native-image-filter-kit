@@ -397,10 +397,12 @@ typedef BFTask<NSString *> DeferredExtractedImagePath;
         innerSelf->_onIFKExtractImage != nil &&
         [innerSelf->_jsonConfig isEqual:innerSelf->_tmpImageConfig]
       ) {
-        NSData *data = UIImagePNGRepresentation(image);
+        //NSData *data = UIImagePNGRepresentation(image);
+        NSData *data = UIImageJPEGRepresentation(image, 0.8);
 
         NSError *error = nil;
-        NSString *path = RCTTempFilePath(@"rnifk.png", &error);
+        //NSString *path = RCTTempFilePath(@"rnifk.png", &error);
+        NSString *path = RCTTempFilePath(@"rnifk.jpg", &error);
 
         if (path && !error && data != nil) {
           if ([data writeToFile:path options:(NSDataWritingOptions)0 error:&error]) {
